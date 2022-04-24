@@ -1,0 +1,12 @@
+$ cat config.ini
+[job_builder]
+ignore_cache=True
+exclude=jobs/Job2
+
+[jenkins]
+url=https://jenkins.example.org
+user=some_user
+password=some_password
+
+$ jenkins-jobs --conf config.ini test -r jobs/
+$ jenkins-jobs --conf config.ini update -r jobs/

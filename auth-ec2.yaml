@@ -1,0 +1,31 @@
+jenkins:
+  authorizationStrategy:
+    projectMatrix:
+      permissions:
+      - "Overall/Administer:steve.a@example.org"
+      - "Credentials/View:john.d@example.org"
+      ...
+  clouds:
+  - amazonEC2:
+      cloudName: "AWS"
+      privateKey: ${EC2_PRIVATE_KEY}
+      region: "${AWS_REGION}"
+      templates:
+      - ami: "ami-12345678"
+        amiType:
+          unixData:
+            sshPort: "22"
+        connectionStrategy: PRIVATE_IP
+        deleteRootOnTermination: true
+        description: "jenkins_agent"
+        idleTerminationMinutes: "20"
+        instanceCapStr: "100"
+        minimumNumberOfInstances: 0
+        mode: EXCLUSIVE
+        numExecutors: 1
+        remoteAdmin: "jenkins"
+        remoteFS: "/home/jenkins"
+        securityGroups: "sg-12345678"
+        subnetId: "subnet-12345678"
+        type: C52xlarge
+        ...

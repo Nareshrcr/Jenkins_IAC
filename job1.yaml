@@ -1,0 +1,12 @@
+- job:
+    name: Job1
+    project-type: freestyle
+    auth-token: mytoken
+    disabled: false
+    concurrent: false
+    node: jenkins_agent
+    triggers:
+      - timed: '0 3 * * *'
+    builders:
+      - shell:
+          !include-raw: ../scripts/job1.sh
